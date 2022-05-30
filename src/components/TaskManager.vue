@@ -4,17 +4,20 @@ export default{
     data(){
         return{
             newTodo : '',
+            newTodoDuration : 0,
             todos : [
-                        {id: id++, done:true, text:"This is task!"},
-                        {id: id++, done:false, text:"Looks like there is more??"},
+                        {id: id++, done:true, text:"This is task!", duration:0},
+                        {id: id++, done:false, text:"Looks like there is more??", duration:0},
                     ]
             }
     },
     methods : {
         addTodo(){
             console.log("Add!")
-            this.todos.push({ id: id++, done:false, text: this.newTodo })
+            this.todos.push({ id: id++, done:false, text: this.newTodo , duration:this.newTodoDuration})
             this.newTodo = ''
+            this.newTodoDuration = 0
+            console.log(this.todos)
         },
         removeTodo(todo){
             console.log("Remove!")
@@ -29,6 +32,7 @@ export default{
       <h1 class="taskManagerPlaceholder">Tasks</h1>
       <form @submit.prevent="addTodo">
             <input v-model="newTodo">
+            <input type="number" v-model="newTodoDuration">
             <button>Add Task</button>    
         </form>
       <ul>
