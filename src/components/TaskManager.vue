@@ -6,6 +6,14 @@ export default {
 
     data() {
         return {
+            items: [
+                'Dog Photos',
+                'Cat Photos',
+                '',
+                'Potatoes',
+                'Carrots',
+            ],
+            model: ['Carrots'],
             newTodo: {
                 text: 'New Todo',
                 duration: 5,
@@ -47,31 +55,16 @@ export default {
     <v-card class="mx-auto" max-width="600">
         <v-toolbar flat dense>
             <v-toolbar-title>
-                <span class="subheading">METRONOME</span>
+                <input v-model="newTodo.text" placeholder="Task name?" maxlength="20" style="width: 1000px">
             </v-toolbar-title>
-            <v-spacer></v-spacer>
-            <v-btn icon>
-                <v-icon>mdi-share-variant</v-icon>
-            </v-btn>
         </v-toolbar>
 
         <v-card-text>
             <v-row class="mb-4" justify="space-between">
-                <v-col class="text-left">
-                    <span class="text-h2 font-weight-light" v-text="bpm"></span>
-                    <span class="subheading font-weight-light mr-1">BPM</span>
-                    <v-fade-transition>
-                        <v-avatar v-if="isPlaying" :color="color" :style="{
-                animationDuration: animationDuration
-              }" class="mb-1 v-avatar--metronome" size="12"></v-avatar>
-                    </v-fade-transition>
-                </v-col>
-                <v-col class="text-right">
-                    <v-btn :color="color" dark depressed fab @click="toggle">
-                        <v-icon large>
-                            {{ isPlaying ? 'mdi-pause' : 'mdi-play' }}
-                        </v-icon>
-                    </v-btn>
+                <v-col class="text-center">
+                    <span class="text-h4 font-weight-light" v-text="bpm"></span>
+                    <span class="subheading font-weight-light mr-1">Min of</span>
+                    <span class="text-h4 font-weight-light">{{newTodo.text}}</span>
                 </v-col>
             </v-row>
 
@@ -84,36 +77,36 @@ export default {
 
                 <template v-slot:append>
                     <v-icon :color="color" @click="increment">
-                        mdi-pluss
+                        mdi-plus
                     </v-icon>
                 </template>
             </v-slider>
+            <v-row class="mb-4" justify="center">
+                <v-btn class="mx-2" fab dark color="indigo" v-on:click="this.$emit('addTodo', newTodo)">
+                    <v-icon dark>
+                        mdi-plus
+                    </v-icon>
+                </v-btn>
+
+            </v-row>
         </v-card-text>
     </v-card>
-    <div class="d-flex flex-column mb-6">
-        <v-card class="d-flex justify-center mb-6 align-center" height=100 color="rgba(255, 0, 0, 0.1)">
-            <form @submit.prevent="this.$emit('addTodo', newTodo)">
-
-                <input v-model="newTodo.text">
-
-                <input type="number" v-model="newTodo.duration">
-
-                <button>Add Task</button>
-
-            </form>
-        </v-card>
-        <v-card class="d-flex justify-center mb-6 align-center" height=100 color="rgba(255, 0, 0, 0.1)">
-            <ul>
-                <li class="listElem" v-for="todo in todos" :key="todo.id">
-
-                    <span @click="this.$emit('setSelectedTodo', todo)">{{todo.text}}</span>
-
-                    <button v-on:click="this.$emit('removeTodo', todo)">X</button>
-
-                </li>
-            </ul>
-        </v-card>
-    </div>
+    <v-card class="mx-auto" max-width="600">
+        <v-list shaped>
+            <v-list-item-group v-model="model" multiple>
+                <template v-for="todo in todos" :key="todo.id">
+                    <v-list-item-content>
+                        <v-row>
+                            <v-list-item-title v-text="todo.text"></v-list-item-title>
+                            <button v-on:click="this.$emit('removeTodo', todo)">X</button>
+                        </v-row>
+                        <v-card class="d-flex align-start flex-column">
+                           Something! </v-card>
+                    </v-list-item-content>
+                </template>
+            </v-list-item-group>
+        </v-list>
+    </v-card>
 
 </div>
 </template>
