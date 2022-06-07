@@ -34,15 +34,15 @@ export default {
                 </v-col>
             </v-row>
 
-            <v-slider v-model="newTodo.duration" step="10" ticks="always" tick-size="4">
+            <v-slider v-model="newTodo.duration" step="10" tick-size="4">
                 <template v-slot:prepend>
-                    <v-icon :color="color">
+                    <v-icon>
                         mdi-minus
                     </v-icon>
                 </template>
 
                 <template v-slot:append>
-                    <v-icon :color="color">
+                    <v-icon>
                         mdi-plus
                     </v-icon>
                 </template>
@@ -59,18 +59,15 @@ export default {
     </v-card>
     <v-card class="mx-auto" max-width="600">
         <v-list shaped>
-            <v-list-item-group v-model="model" multiple>
                 <template v-for="todo in todos" :key="todo.id">
                     <v-list-item three-line>
-                        <v-list-item-content>
                             <v-chip color="primary">{{`${Math.floor(todo.duration / 60)} : ${(todo.duration % 60).toLocaleString(undefined, { minimumIntegerDigits: 2 })}`}}</v-chip>
                             <v-list-item-title class="text-h5 mb-1">
                                 {{todo.text}}
                             </v-list-item-title>
-                             <v-btn class="mx-2" small color="primary" rounded v-on:click="this.$emit('setSelectedTodo', todo)">
-                    Select
-                    </v-btn>
-                        </v-list-item-content>
+                            <v-btn class="mx-2" small color="primary" rounded v-on:click="this.$emit('setSelectedTodo', todo)">
+                                Select
+                            </v-btn>
                     </v-list-item>
 
                     <v-btn class="mx-2" small color="primary" rounded v-on:click="this.$emit('removeTodo', todo)">
@@ -79,7 +76,6 @@ export default {
                         </v-icon>
                     </v-btn>
                 </template>
-            </v-list-item-group>
         </v-list>
     </v-card>
 
