@@ -2,6 +2,7 @@
 export default {
     props: {
         todos: Array,
+        items: Array
     },
 
     data() {
@@ -57,27 +58,15 @@ export default {
             </v-row>
         </v-card-text>
     </v-card>
-    <v-card class="mx-auto" max-width="600">
-        <v-list shaped>
-                <template v-for="todo in todos" :key="todo.id">
-                    <v-list-item three-line>
-                            <v-chip color="primary">{{`${Math.floor(todo.duration / 60)} : ${(todo.duration % 60).toLocaleString(undefined, { minimumIntegerDigits: 2 })}`}}</v-chip>
-                            <v-list-item-title class="text-h5 mb-1">
-                                {{todo.text}}
-                            </v-list-item-title>
-                            <v-btn class="mx-2" small color="primary" rounded v-on:click="this.$emit('setSelectedTodo', todo)">
-                                Select
-                            </v-btn>
-                    </v-list-item>
+    <v-banner lines="one" color="deep-purple-accent-4" class="my-4" v-for="todo in todos" :key="todo.id" :icon="todo.icon">
+        <v-banner-text>
+            {{todo.text}}
+        </v-banner-text>
 
-                    <v-btn class="mx-2" small color="primary" rounded v-on:click="this.$emit('removeTodo', todo)">
-                        <v-icon dark>
-                            mdi-minus
-                        </v-icon>
-                    </v-btn>
-                </template>
-        </v-list>
-    </v-card>
-
+        <template v-slot:actions>
+            <v-btn v-on:click="this.$emit('setSelectedTodo', todo)">Select</v-btn>
+            <v-btn v-on:click="this.$emit('removeTodo', todo)">Delete</v-btn>
+        </template>
+    </v-banner>
 </div>
 </template>
