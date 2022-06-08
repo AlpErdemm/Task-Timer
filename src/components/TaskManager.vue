@@ -49,15 +49,8 @@ export default {
                     </v-icon>
                 </template>
             </v-slider>
-            <v-row v-if="newTodo.text != ''" class="mb-4" justify="center">
-                <v-btn class="mx-2" fab rounded color="primary" v-on:click="this.$emit('addTodo', newTodo)">
-                    <v-icon dark>
-                        mdi-plus
-                    </v-icon>
-                </v-btn>
-            </v-row>
-            <v-row v-else class="mb-4" justify="center">
-                <v-btn disabled class="mx-2" fab rounded color="primary" v-on:click="this.$emit('addTodo', newTodo)">
+            <v-row class="mb-4" justify="center">
+                <v-btn class="mx-2" fab rounded color="primary" v-on:click="this.$emit('addTodo', newTodo)" :disabled="!newTodo.text">
                     <v-icon dark>
                         mdi-plus
                     </v-icon>
