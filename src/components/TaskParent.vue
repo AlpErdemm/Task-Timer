@@ -3,8 +3,6 @@
   import Timer from './Timer.vue';
 
   let id = 0;
-  let pauseIcon = "mdi-television-pause";
-  let startIcon = "mdi-television-play"
 
   export default {
     name: 'TaskParent',
@@ -17,8 +15,8 @@
     data(){
       return {
         todos : [
-          { id: id++, done: true, text: "This is task!", icon:startIcon, duration: 10, totalDuration: 10},
-          { id: id++, done: false, text: "Looks like there is more??", icon:pauseIcon, duration: 600, totalDuration: 600},
+          { id: id++, done: true, text: "This is task!", duration: 10, totalDuration: 10},
+          { id: id++, done: false, text: "Looks like there is more??", duration: 600, totalDuration: 600},
         ],
         selectedTodo : null,
         continue: false,
@@ -30,7 +28,7 @@
       addTodo(newTodo){
         console.log("Add!")
         const { text, duration, done } = newTodo;
-        this.todos.push({ id: id++, done, text, icon:pauseIcon, duration: duration * 60, totalDuration: duration * 60 });
+        this.todos.push({ id: id++, done, text, duration: duration * 60, totalDuration: duration * 60 });
         console.log(this.todos)
       },
 
@@ -46,9 +44,7 @@
       },
 
       setSelectedTodo(todo) {
-        this.selectedTodo.icon = pauseIcon;
         this.selectedTodo = todo;
-        this.selectedTodo.icon = startIcon;
         this.continue = false;
         clearInterval(this.interval);
       },
@@ -92,6 +88,7 @@
         <v-col>
     <TaskManager
       :todos='todos'
+      :selectedTodo='selectedTodo'
       @addTodo="addTodo"
       @removeTodo="removeTodo"
       @setSelectedTodo="setSelectedTodo"

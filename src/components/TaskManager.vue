@@ -2,7 +2,8 @@
 export default {
     props: {
         todos: Array,
-        items: Array
+        items: Array,
+        selectedTodo: Object
     },
 
     data() {
@@ -67,7 +68,7 @@ export default {
 
     <div v-for="todo in todos" :key="todo.id"  class="ml-16 my-4 w-75"  >
         <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>
-        <v-banner lines="one" color="deep-purple-accent-4" :icon="todo.icon">
+        <v-banner lines="one" color="deep-purple-accent-4" :icon="todo.id === selectedTodo?.id ? 'mdi-television-play':'mdi-television-pause'">
 
             <v-banner-text>
                 {{todo.text}}
