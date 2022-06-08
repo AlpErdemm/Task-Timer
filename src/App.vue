@@ -8,6 +8,6 @@
 
 <style>
   body{
-    background-color: rgb(224, 121, 121);
+    background-color: rgb(204, 102, 255, 0.3);
   }
 </style>
