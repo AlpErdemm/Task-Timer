@@ -8,7 +8,7 @@ export default {
     data() {
         return {
             newTodo: {
-                text: 'New Todo',
+                text: '',
                 duration: 10,
                 done: false,
             },
@@ -20,22 +20,22 @@ export default {
 <template>
 <div class="TaskManager">
     <v-card class="mx-auto" max-width="600">
-        <v-toolbar flat dense>
+        <v-toolbar class="text-center" flat dense>
             <v-toolbar-title>
-                <input v-model="newTodo.text" placeholder="Task name?" maxlength="20" style="width: 1000px">
+                What would you like to do?
             </v-toolbar-title>
         </v-toolbar>
 
         <v-card-text>
             <v-row class="mb-4" justify="space-between">
                 <v-col class="text-center">
+                    <v-text-field v-model="newTodo.text" label="Task name" variant="underlined"></v-text-field>
                     <span class="text-h4 font-weight-light" v-text="newTodo.duration"></span>
-                    <span class="subheading font-weight-light mr-1">Min of</span>
-                    <span class="text-h4 font-weight-light">{{newTodo.text}}</span>
+                    <span class="subheading font-weight-light mr-1">Min</span>
                 </v-col>
             </v-row>
 
-            <v-slider v-model="newTodo.duration" step="10" tick-size="4">
+            <v-slider min="10" max="60" v-model="newTodo.duration" step="10" tick-size="4">
                 <template v-slot:prepend>
                     <v-icon>
                         mdi-minus
@@ -48,17 +48,23 @@ export default {
                     </v-icon>
                 </template>
             </v-slider>
-            <v-row class="mb-4" justify="center">
+            <v-row v-if="newTodo.text != ''" class="mb-4" justify="center">
                 <v-btn class="mx-2" fab rounded color="primary" v-on:click="this.$emit('addTodo', newTodo)">
                     <v-icon dark>
                         mdi-plus
                     </v-icon>
                 </v-btn>
-
+            </v-row>
+            <v-row v-else class="mb-4" justify="center">
+                <v-btn disabled class="mx-2" fab rounded color="primary" v-on:click="this.$emit('addTodo', newTodo)">
+                    <v-icon dark>
+                        mdi-plus
+                    </v-icon>
+                </v-btn>
             </v-row>
         </v-card-text>
     </v-card>
-    <v-banner lines="one" color="deep-purple-accent-4" class="my-4" v-for="todo in todos" :key="todo.id" :icon="todo.icon">
+    <v-banner class="mx-auto my-4" max-width="600" lines="one" color="deep-purple-accent-4" v-for="todo in todos" :key="todo.id" :icon="todo.icon">
         <v-banner-text>
             {{todo.text}}
         </v-banner-text>
