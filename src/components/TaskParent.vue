@@ -30,11 +30,19 @@
         const { text, duration, done } = newTodo;
         this.todos.push({ id: id++, done, text, duration: duration * 60, totalDuration: duration * 60 });
         console.log(this.todos)
+
+        if (this.todos.length === 1) {
+          this.setSelectedTodo(this.todos[0]);
+        }
       },
 
       removeTodo(todo){
         console.log("Remove!")
         this.todos = this.todos.filter((t) => t !== todo)
+
+        if (todo.id === this.selectedTodo.id && this.todos.length) {
+          this.setSelectedTodo(this.todos[0]);
+        }
       },
 
       updateRemainingTime() {
@@ -69,7 +77,7 @@
           }
         },
         deep: true
-      }
+      },
     },
 
     mounted() {
@@ -95,7 +103,9 @@
     />
      </v-col>
       <v-col >
+    <h1 v-if="!this.todos.length">Add a new task to start the timer.</h1>
     <Timer
+      v-else
       :duration="this.selectedTodo?.duration ?? 300"
       :continue="continue"
       @toggleInterval="toggleInterval"
