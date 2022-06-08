@@ -64,15 +64,20 @@ export default {
             </v-row>
         </v-card-text>
     </v-card>
-    <v-banner class="mx-auto my-4" max-width="600" lines="one" color="deep-purple-accent-4" v-for="todo in todos" :key="todo.id" :icon="todo.icon">
-        <v-banner-text>
-            {{todo.text}}
-        </v-banner-text>
 
-        <template v-slot:actions>
-            <v-btn v-on:click="this.$emit('setSelectedTodo', todo)">Select</v-btn>
-            <v-btn v-on:click="this.$emit('removeTodo', todo)">Delete</v-btn>
-        </template>
-    </v-banner>
+    <div v-for="todo in todos" :key="todo.id"  class="mx-auto my-4 w-75"  >
+        <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>
+        <v-banner lines="one" color="deep-purple-accent-4" :icon="todo.icon">
+
+            <v-banner-text>
+                {{todo.text}}
+            </v-banner-text>
+
+            <template v-slot:actions>
+                <v-btn v-on:click="this.$emit('setSelectedTodo', todo)">Select</v-btn>
+                <v-btn v-on:click="this.$emit('removeTodo', todo)">Delete</v-btn>
+            </template>
+        </v-banner>
+    </div>
 </div>
 </template>
