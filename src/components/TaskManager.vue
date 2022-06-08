@@ -20,7 +20,7 @@ export default {
 <template>
 <div class="TaskManager">
     <v-card class="mx-auto" max-width="600">
-        <v-toolbar class="text-center" flat dense>
+        <v-toolbar color="purple" class="text-center" flat dense>
             <v-toolbar-title>
                 What would you like to do?
             </v-toolbar-title>
