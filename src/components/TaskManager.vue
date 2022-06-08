@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-<div class="TaskManager">
-    <v-card class="mx-auto" max-width="600">
+<div>
+    <v-card class="ml-16 w-75">
         <v-toolbar color="purple" class="text-center" flat dense>
             <v-toolbar-title>
                 What would you like to do?
@@ -65,7 +65,7 @@ export default {
         </v-card-text>
     </v-card>
 
-    <div v-for="todo in todos" :key="todo.id"  class="mx-auto my-4 w-75"  >
+    <div v-for="todo in todos" :key="todo.id"  class="ml-16 my-4 w-75"  >
         <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>
         <v-banner lines="one" color="deep-purple-accent-4" :icon="todo.icon">
 

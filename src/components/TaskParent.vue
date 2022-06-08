@@ -83,29 +83,28 @@
 </script>
 
 <template>
-  <div class="grid-container">
+  <div>
+        <v-container
+    >
+      <v-row
+        align="center"
+      >
+        <v-col>
     <TaskManager
       :todos='todos'
       @addTodo="addTodo"
       @removeTodo="removeTodo"
       @setSelectedTodo="setSelectedTodo"
     />
+     </v-col>
+      <v-col >
     <Timer
       :duration="this.selectedTodo?.duration ?? 300"
       :continue="continue"
       @toggleInterval="toggleInterval"
     />
+     </v-col>
+      </v-row>
+        </v-container>
   </div>
 </template>
-
-<style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    height: 800px;
-    grid-gap: 10px;
-    padding: 10px;
-    column-gap: 50px;
-    align-items: center;
-  }
-</style>
