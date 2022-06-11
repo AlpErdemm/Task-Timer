@@ -10,11 +10,19 @@ export default {
         return {
             newTodo: {
                 text: '',
-                duration: 10,
+                duration: 5,
                 done: false,
             },
+            tab: null,
+            text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
         }
     },
+      methods : {
+          resetForm(){
+              this.newTodo.text=''
+              this.newTodo.duration=5
+          }
+      }
 }
 </script>
 
@@ -51,27 +59,49 @@ export default {
                 </template>
             </v-slider>
             <v-row class="mt-n6" justify="end">
-                <v-btn variant="contained-flat" :class="newTodo.text ? 'text-primary' : 'text-disabled' " v-on:click="this.$emit('addTodo', newTodo)" :disabled="!newTodo.text">
+                <v-btn variant="contained-flat" :class="newTodo.text ? 'text-primary' : 'text-disabled' " v-on:click="this.$emit('addTodo', newTodo);resetForm();" :disabled="!newTodo.text">
                     ADD
                 </v-btn>
             </v-row>
         </v-card-text>
     </v-card>
-    <v-sheet height="400" plain color="rgb(255, 0, 0, 0)" class="overflow-auto mt-3">
-        <div v-for="todo in todos" :key="todo.id" class="ml-16 my-4 w-75">
-            <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>
-            <v-banner lines="one" color="deep-purple-accent-4">
-                <v-banner-icon v-if="selectedTodo?.id === todo.id" icon="" size="10" class="mr-1 mt-3"></v-banner-icon>
-                <v-banner-text :class="todo.done ? 'pa-0 text-decoration-line-through' : 'pa-0'">
-                    {{todo.text}}
-                </v-banner-text>
+    <v-tabs v-model="tab" centered  background-color="purple" class="ml-16 mt-4 w-75">
+        <v-tab value="tab-1">
+            <v-icon>mdi-phone</v-icon>
+            All
+        </v-tab>
 
-                <template v-slot:actions>
-                    <v-btn v-on:click="this.$emit('setSelectedTodo', todo)">Select</v-btn>
-                    <v-btn v-on:click="this.$emit('removeTodo', todo)">Delete</v-btn>
-                </template>
-            </v-banner>
-        </div>
-    </v-sheet>
+        <v-tab value="tab-2">
+            <v-icon>mdi-heart</v-icon>
+            Still going
+        </v-tab>
+
+        <v-tab value="tab-3">
+            <v-icon>mdi-account-box</v-icon>
+            Done
+        </v-tab>
+    </v-tabs>
+    <v-window v-model="tab">
+        <v-window-item v-for="i in 3" :key="i" :value="'tab-' + i">
+            <v-card height="350" color="white" class="overflow-auto ml-16 w-75">
+                <v-card v-for="todo in todos" :key="todo.id" class="my-4 w-100">
+                    <div v-if="this.tab === 'tab-1' || this.tab === 'tab-2' && !todo.done || this.tab === 'tab-3' && todo.done" >
+                        <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>
+                        <v-banner lines="one" color="deep-purple-accent-4">
+                            <v-banner-icon v-if="selectedTodo?.id === todo.id" icon="" size="10" class="mr-1 mt-3"></v-banner-icon>
+                            <v-banner-text :class="todo.done ? 'pa-0 text-decoration-line-through' : 'pa-0'">
+                                {{todo.text}}
+                            </v-banner-text>
+
+                            <template v-slot:actions>
+                                <v-btn v-on:click="this.$emit('setSelectedTodo', todo)">Select</v-btn>
+                                <v-btn v-on:click="this.$emit('removeTodo', todo)">Delete</v-btn>
+                            </template>
+                        </v-banner>
+                    </div>
+                </v-card>
+            </v-card>
+        </v-window-item>
+    </v-window>
 </div>
 </template>
