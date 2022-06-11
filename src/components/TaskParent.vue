@@ -1,6 +1,7 @@
 <script>
   import TaskManager from './TaskManager.vue';
   import Timer from './Timer.vue';
+  import TaskAdder from  './TaskAdder.vue';
 
   let id = 0;
 
@@ -9,7 +10,8 @@
 
     components: {
       TaskManager,
-      Timer
+      Timer,
+      TaskAdder
     },
 
     data(){
@@ -19,7 +21,7 @@
           { id: id++, done: false, text: "Looks like there is more??", duration: 600, totalDuration: 600},
         ],
         selectedTodo : null,
-        continue: false,
+        isContinue: false,
         interval: null,
       }
     },
@@ -53,14 +55,14 @@
 
       setSelectedTodo(todo) {
         this.selectedTodo = todo;
-        this.continue = false;
+        this.isContinue = false;
         clearInterval(this.interval);
       },
 
       toggleInterval() {
-        this.continue = !this.continue;
+        this.isContinue = !this.isContinue;
 
-        if (this.continue) {
+        if (this.isContinue) {
           this.updateRemainingTime();
         } else {
           clearInterval(this.interval);
@@ -74,7 +76,7 @@
           if (oldSelectedTodo?.duration === 0) {
             oldSelectedTodo.done = true
             clearInterval(this.interval);
-            this.continue = false;
+            this.isContinue = false;
           }
         },
         deep: true
@@ -88,31 +90,30 @@
 </script>
 
 <template>
-<v-card color="purple" class="text-center d-flex justify-center align-center"  height="50">
-  <p class="text-h4" >Task Manager</p>
-</v-card>
+<v-sheet elevation="16" color="purple" class=" d-flex align-center"  height="50">
+  <p class="text-h5 pl-5" >Task Timer</p>
+</v-sheet>
   <div>
         <v-container
     >
       <v-row
-        align="center"
       >
         <v-col>
     <TaskManager
       :todos='todos'
       :selectedTodo='selectedTodo'
-      @addTodo="addTodo"
       @removeTodo="removeTodo"
       @setSelectedTodo="setSelectedTodo"
     />
      </v-col>
-      <v-col >
+    <v-col >
+      <TaskAdder @addTodo="addTodo"/>
     <h1 v-if="!this.todos.length">Add a new task to start the timer.</h1>
     <Timer
       v-else
       :selectedTodo="selectedTodo"
       :duration="this.selectedTodo?.duration ?? 300"
-      :continue="continue"
+      :isContinue="isContinue"
       @toggleInterval="toggleInterval"
     />
      </v-col>
