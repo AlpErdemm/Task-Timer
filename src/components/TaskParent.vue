@@ -106,6 +106,7 @@
     <h1 v-if="!this.todos.length">Add a new task to start the timer.</h1>
     <Timer
       v-else
+      :selectedTodo="selectedTodo"
       :duration="this.selectedTodo?.duration ?? 300"
       :continue="continue"
       @toggleInterval="toggleInterval"
