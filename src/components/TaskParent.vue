@@ -15,7 +15,7 @@
     data(){
       return {
         todos : [
-          { id: id++, done: true, text: "This is task!", duration: 10, totalDuration: 10},
+          { id: id++, done: false, text: "This is task!", duration: 10, totalDuration: 10},
           { id: id++, done: false, text: "Looks like there is more??", duration: 600, totalDuration: 600},
         ],
         selectedTodo : null,
@@ -72,6 +72,7 @@
       selectedTodo: {
         handler(newSelectedTodo, oldSelectedTodo) {
           if (oldSelectedTodo?.duration === 0) {
+            oldSelectedTodo.done = true
             clearInterval(this.interval);
             this.continue = false;
           }

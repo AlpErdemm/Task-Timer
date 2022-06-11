@@ -17,10 +17,10 @@ export default {
             </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-            <h1 v-if="this.duration === 0">Finished!</h1>
+            <h1 class="text-center" v-if="this.duration === 0">Finished!</h1>
             <div v-else class="text-center">
                 <h1>{{`${Math.floor(duration / 60)} : ${(duration % 60).toLocaleString(undefined, { minimumIntegerDigits: 2 })}`}}</h1>
-                <v-btn class="mt-5" fab rounded color="primary" v-on:click="this.$emit('toggleInterval')">
+                <v-btn variant="contained-flat" class="mt-5 text-primary" v-on:click="this.$emit('toggleInterval')">
                     {{ this.continue ? 'Stop' : 'Start' }}
                 </v-btn>
             </div>
