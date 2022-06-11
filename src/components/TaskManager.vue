@@ -26,7 +26,7 @@ export default {
 
 <template>
 <div>
-    <v-tabs grow v-model="tab" centered background-color="purple" class="ml-16 mt-4 w-75">
+    <v-tabs grow v-model="tab" background-color="purple" class="ml-16 mt-4 w-75">
         <v-tab value="tab-1">
             <v-icon>mdi-clipboard-outline</v-icon>
             All
@@ -44,7 +44,7 @@ export default {
     </v-tabs>
     <v-window v-model="tab">
         <v-window-item v-for="i in 3" :key="i" :value="'tab-' + i">
-            <v-card elevation="16" height="550" color="white" class="overflow-auto ml-16 mb-16 w-75">
+            <v-card elevation="16" height="550" color="white" class="overflow-auto ml-16 mb-6 w-75">
                 <v-card v-for="todo in todos" :key="todo.id" class="my-4 w-100">
                     <div v-if="this.tab === 'tab-1' || this.tab === 'tab-2' && !todo.done || this.tab === 'tab-3' && todo.done">
                         <v-progress-linear height="10" color="purple" :model-value="100 - ((todo.duration / todo.totalDuration)*100)"></v-progress-linear>

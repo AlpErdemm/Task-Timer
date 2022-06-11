@@ -2,7 +2,7 @@
 export default {
     props: {
         duration: Number,
-        continue: Boolean,
+        isContinue: Boolean,
         selectedTodo: Object
     },
 }
@@ -21,7 +21,7 @@ export default {
             <div v-else class="text-center">
                 <h1>{{`${Math.floor(duration / 60)} : ${(duration % 60).toLocaleString(undefined, { minimumIntegerDigits: 2 })}`}}</h1>
                 <v-btn variant="contained-flat" class="mt-5 text-primary" v-on:click="this.$emit('toggleInterval')">
-                    {{ this.continue ? 'Stop Timer' : 'Start Timer' }}
+                    {{ this.isContinue ? 'Stop Timer' : 'Start Timer' }}
                 </v-btn>
             </div>
         </v-card-text>
