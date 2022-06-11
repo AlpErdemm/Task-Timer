@@ -88,6 +88,9 @@
 </script>
 
 <template>
+<v-card color="purple" class="text-center d-flex justify-center align-center"  height="50">
+  <p class="text-h4" >Task Manager</p>
+</v-card>
   <div>
         <v-container
     >
