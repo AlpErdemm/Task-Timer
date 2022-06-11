@@ -65,19 +65,19 @@ export default {
             </v-row>
         </v-card-text>
     </v-card>
-    <v-tabs v-model="tab" centered  background-color="purple" class="ml-16 mt-4 w-75">
+    <v-tabs grow v-model="tab" centered  background-color="purple" class="ml-16 mt-4 w-75">
         <v-tab value="tab-1">
-            <v-icon>mdi-phone</v-icon>
+            <v-icon>mdi-clipboard-outline</v-icon>
             All
         </v-tab>
 
         <v-tab value="tab-2">
-            <v-icon>mdi-heart</v-icon>
+            <v-icon>mdi-clipboard-clock-outline</v-icon>
             Still going
         </v-tab>
 
         <v-tab value="tab-3">
-            <v-icon>mdi-account-box</v-icon>
+            <v-icon>mdi-clipboard-check-outline</v-icon>
             Done
         </v-tab>
     </v-tabs>
