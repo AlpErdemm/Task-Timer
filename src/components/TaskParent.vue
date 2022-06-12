@@ -19,17 +19,10 @@ export default {
             todos: [{
                     id: id++,
                     done: false,
-                    text: "This is task!",
+                    text: "This is an example task!",
                     duration: 10,
                     totalDuration: 10
-                },
-                {
-                    id: id++,
-                    done: false,
-                    text: "Looks like there is more??",
-                    duration: 600,
-                    totalDuration: 600
-                },
+                }
             ],
             selectedTodo: null,
             isContinue: false,
@@ -102,10 +95,20 @@ export default {
             },
             deep: true
         },
+        todos: {
+            handler(newTodos, oldTodos) {
+              localStorage.setItem("todos", JSON.stringify(newTodos));
+            },
+            deep: true
+        },
     },
 
     mounted() {
+      if(localStorage.todos){
+        this.todos = JSON.parse(localStorage.getItem("todos"))
+      }   
         this.selectedTodo = this.todos[0];
+        console.log(this.todos);
     }
 }
 </script>
