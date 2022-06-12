@@ -20,7 +20,7 @@ export default {
 
 <template>
 <div>
-    <v-card elevation="16" class="ml-16 mt-4 w-75">
+    <v-card elevation="16" class="mt-4">
         <v-toolbar color="purple" class="text-center" flat dense>
             <v-toolbar-title>
                 Add a new task
