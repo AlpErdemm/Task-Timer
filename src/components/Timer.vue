@@ -10,7 +10,7 @@ export default {
 
 <template>
 <div>
-    <v-card elevation="16" class="ml-16 mt-6 w-75">
+    <v-card elevation="16" class="mt-6">
         <v-toolbar color="purple" class="text-center" flat dense>
             <v-toolbar-title>
                 {{selectedTodo?.text}}
