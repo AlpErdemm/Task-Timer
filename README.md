@@ -4,8 +4,8 @@ This is a web application made with Vue 3 and Vuetify. The application lets user
 Tech: Vue 3 | Vuetify | HTML | JavaScript | Netlify 
 
 You can test the application live here : https://deft-gecko-82dda2.netlify.app/
-| Create Post                            |                          |
-| -------------------------------------- | ------------------------------------------------ |
+| Create Post                            |                          
+| -------------------------------------- | 
 | ![](tasks.gif) | ![posts-and-search](assets/posts-and-search.gif) |
 ## Recommended IDE Setup
 
