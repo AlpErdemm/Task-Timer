@@ -1,6 +1,9 @@
-# tasks
+# Task Timer
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a web application made with Vue 3 and Vuetify. The application lets users time their daily tasks and keep track of them. 
+Tech: Vue 3 | Vuetify | HTML | JavaScript | Netlify 
+
+You can test the application live here : https://deft-gecko-82dda2.netlify.app/
 
 ## Recommended IDE Setup
 
