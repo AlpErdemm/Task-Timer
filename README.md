@@ -4,7 +4,9 @@ This is a web application made with Vue 3 and Vuetify. The application lets user
 Tech: Vue 3 | Vuetify | HTML | JavaScript | Netlify 
 
 You can test the application live here : https://deft-gecko-82dda2.netlify.app/
-| ![](tasks.gif) |
+| Create Post                            | Browse & Search Posts                          |
+| -------------------------------------- | ------------------------------------------------ |
+| ![](tasks.gif) | ![posts-and-search](assets/posts-and-search.gif) |
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.vscode-typescript-vue-plugin).
