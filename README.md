@@ -1,6 +1,8 @@
 # Task Timer
 
 This is a web application made with Vue 3 and Vuetify. The application lets users time their daily tasks and keep track of them. 
+Tech: Vue 3 | Vuetify | HTML | JavaScript | Netlify 
+
 
 ## Recommended IDE Setup
 
